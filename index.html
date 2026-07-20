@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}ImgChain · Submit{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Ledger height: {{ block_count }} block{{ 's' if block_count != 1 else '' }}</p>
+  <h1>Anchor an image to the chain.</h1>
+  <p class="lede">
+    Upload an image. It gets fingerprinted with SHA-256, classified by a CNN,
+    and the result is mined into a tamper-evident block. Nothing about the
+    stored record can change without breaking every hash after it.
+  </p>
+
+  <form class="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+    <label class="dropzone" for="image">
+      <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.webp" required>
+      <span class="dropzone-label">Choose an image (PNG / JPG / WEBP)</span>
+    </label>
+    <button type="submit">Fingerprint &amp; Mine Block</button>
+  </form>
+</section>
+
+<section class="how">
+  <div class="how-step">
+    <span class="how-num">01</span>
+    <h3>Hash</h3>
+    <p>The raw bytes are hashed with SHA-256 to produce a unique fingerprint of the exact file submitted.</p>
+  </div>
+  <div class="how-step">
+    <span class="how-num">02</span>
+    <h3>Classify</h3>
+    <p>A pretrained ResNet18 CNN returns a top label and confidence score for the image.</p>
+  </div>
+  <div class="how-step">
+    <span class="how-num">03</span>
+    <h3>Mine</h3>
+    <p>Hash + label + confidence are packed into a block, linked to the previous block's hash, and mined.</p>
+  </div>
+</section>
+{% endblock %}

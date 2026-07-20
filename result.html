@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Block #{{ block.index }} · ImgChain{% endblock %}
+{% block content %}
+<section class="record">
+  <p class="eyebrow">Block #{{ block.index }} mined</p>
+  <h1>{{ block.prediction }}</h1>
+  <p class="lede">Confidence: {{ "%.1f"|format(block.confidence * 100) }}%</p>
+
+  <dl class="record-fields">
+    <dt>Filename</dt><dd>{{ block.filename }}</dd>
+    <dt>Image SHA-256</dt><dd class="mono">{{ block.image_hash }}</dd>
+    <dt>Timestamp</dt><dd class="mono">{{ block.timestamp }}</dd>
+    <dt>Previous hash</dt><dd class="mono">{{ block.previous_hash }}</dd>
+    <dt>Block hash</dt><dd class="mono">{{ block.hash }}</dd>
+    <dt>Nonce</dt><dd class="mono">{{ block.nonce }}</dd>
+  </dl>
+
+  <a class="link-back" href="{{ url_for('view_chain') }}">View full ledger →</a>
+</section>
+{% endblock %}

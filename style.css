@@ -1,0 +1,156 @@
+/* Palette: graphite ledger background, amber "evidence tag" accent,
+   cool teal for verified/secondary states. Monospace for anything
+   that's a hash or timestamp -- data should look like data. */
+:root {
+  --bg: #14181c;
+  --bg-panel: #1b2126;
+  --line: #2a3238;
+  --ink: #e8ebed;
+  --ink-dim: #8b969e;
+  --amber: #e0a94d;
+  --teal: #4dbdb0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+.mono {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.85rem;
+  color: var(--teal);
+  word-break: break-all;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; letter-spacing: 0.04em; }
+.brand-mark { color: var(--amber); }
+.accent { color: var(--amber); }
+
+nav a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+nav a:hover { color: var(--ink); border-color: var(--amber); }
+
+main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--amber);
+  margin: 0 0 0.6rem;
+}
+
+h1 { font-size: 2.1rem; margin: 0 0 0.6rem; letter-spacing: -0.01em; }
+.lede { color: var(--ink-dim); max-width: 52ch; }
+
+.upload-form { margin-top: 2rem; }
+
+.dropzone {
+  display: block;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  background: var(--bg-panel);
+  color: var(--ink-dim);
+  transition: border-color 0.15s ease;
+}
+.dropzone:hover { border-color: var(--amber); }
+.dropzone input { display: none; }
+
+button, .verify-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--amber);
+  color: #14181c;
+  border: none;
+  padding: 0.7rem 1.3rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+button:hover, .verify-btn:hover { filter: brightness(1.08); }
+
+.how {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.how-step {
+  border-top: 2px solid var(--line);
+  padding-top: 0.8rem;
+}
+.how-num { color: var(--amber); font-size: 0.8rem; font-weight: 700; }
+.how-step h3 { margin: 0.3rem 0; }
+.how-step p { color: var(--ink-dim); font-size: 0.88rem; margin: 0; }
+
+.record-fields {
+  margin-top: 1.8rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+.record-fields dt { color: var(--ink-dim); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.8rem; }
+.record-fields dd { margin: 0.15rem 0 0; }
+
+.link-back { color: var(--teal); text-decoration: none; display: inline-block; margin-top: 2rem; }
+
+.ledger-header { display: flex; justify-content: space-between; align-items: center; }
+
+.chain-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.block-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+}
+.block-card-top { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
+.block-idx { color: var(--amber); font-weight: 700; }
+.block-card-hashes { display: flex; flex-direction: column; gap: 0.15rem; }
+.hash-label { color: var(--ink-dim); display: inline-block; width: 3.2rem; }
+
+.flash-stack { max-width: 780px; margin: 1rem auto 0; padding: 0 1.5rem; }
+.flash {
+  background: rgba(224, 169, 77, 0.12);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 0.78rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 600px) {
+  .how { grid-template-columns: 1fr; }
+}
