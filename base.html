@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}ImgChain{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◈</span>
+      <span class="brand-name">IMG<span class="accent">CHAIN</span></span>
+    </div>
+    <nav>
+      <a href="{{ url_for('index') }}">Submit</a>
+      <a href="{{ url_for('view_chain') }}">Ledger</a>
+    </nav>
+  </header>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-stack">
+        {% for m in messages %}
+          <div class="flash">{{ m }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <span>Course Project · Rapid Systems Integration · MVP build</span>
+  </footer>
+</body>
+</html>

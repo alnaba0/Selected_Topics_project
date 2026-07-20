@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Ledger · ImgChain{% endblock %}
+{% block content %}
+<section class="ledger-header">
+  <h1>Ledger</h1>
+  <a class="verify-btn" href="{{ url_for('verify') }}">Verify chain integrity</a>
+</section>
+
+<div class="chain-list">
+  {% for block in blocks|reverse %}
+  <div class="block-card">
+    <div class="block-card-top">
+      <span class="block-idx">#{{ block.index }}</span>
+      <span class="block-pred">{{ block.prediction }}</span>
+    </div>
+    <div class="block-card-hashes mono">
+      <div><span class="hash-label">hash</span> {{ block.hash[:16] }}…</div>
+      <div><span class="hash-label">prev</span> {{ block.previous_hash[:16] }}…</div>
+      <div><span class="hash-label">img</span> {{ block.image_hash[:16] }}…</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
